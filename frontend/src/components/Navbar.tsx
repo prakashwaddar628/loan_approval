@@ -17,6 +17,9 @@ export default function Navbar() {
           <Link href="/" className="hover:underline hover:text-blue-200">
             Home
           </Link>
+          <Link href="/predict" className="hover:underline hover:text-blue-200">
+            Predict
+          </Link>
           <Link href="/dashboard" className="hover:underline hover:text-blue-200">
             Dashboard
           </Link>
