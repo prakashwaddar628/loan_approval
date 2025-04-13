@@ -48,7 +48,7 @@ def predict():
         # Scale and predict
         input_scaled = scaler.transform(input_data)
         prediction = model.predict(input_scaled)
-        result = "Approved" if prediction[0] == 1 else "Rejected"
+        result = "Rejected" if prediction[0] == 1 else "Approved"
 
         # Store recent prediction
         recent_predictions.append({
