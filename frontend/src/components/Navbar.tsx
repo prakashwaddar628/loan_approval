@@ -26,6 +26,9 @@ export default function Navbar() {
           <Link href="/about" className="hover:underline hover:text-blue-200">
             About
           </Link>
+          <Link href="/login" className="hover:underline hover:text-blue-200">
+          Login
+          </Link>
         </div>
       </div>
     </nav>
