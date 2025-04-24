@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from werkzeug.security import generate_password_hash
 from .connection import users_collection
 
 register_bp = Blueprint("register", __name__)
@@ -17,11 +16,10 @@ def register():
     if users_collection.find_one({"username": username}):
         return jsonify({"error": "Username already exists."}), 409
 
-    hashed_password = generate_password_hash(password)
     users_collection.insert_one({
         "name": name,
         "username": username,
-        "password": hashed_password
+        "password": password
     })
 
     return jsonify({"message": "User registered successfully."}), 201
