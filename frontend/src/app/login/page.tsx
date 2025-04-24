@@ -3,16 +3,29 @@
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    if (!username) {
+      setErrors((prev) => ({ ...prev, username: "Username is required" }));
+      return;
+    }
+    if (!password) {
+      setErrors((prev) => ({ ...prev, password: "Password is required" }));
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const res = await fetch("http://localhost:5000/login", {
@@ -22,27 +35,47 @@ export default function Login() {
       });
 
       const data = await res.json();
-      setLoading(true);
 
       if (res.ok) {
-        // Assuming backend returns something like { success: true }
+        localStorage.setItem("token", data.token);
         console.log("Login successful");
-        router.push("/dashboard");
-        setLoading(false);
+        toast.success("Login successful!",{ 
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         });
+        router.push("/");
       } else {
-        alert(data.error || "Invalid credentials");
-        setLoading(false);
+        toast.error(data.error || "Invalid credentials!",{ 
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         });
       }
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.",{ 
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+  
+       });
+    } finally {
       setLoading(false);
     }
   };
 
   const handleForgotPassword = () => {
-    console.log("Forgot password link clicked");
-    // TODO: Redirect to forgot password page
+    router.push("/forgotpassword");
   };
 
   return (
@@ -64,8 +97,9 @@ export default function Login() {
             required
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter username or email"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className={`w-full p-2 border ${errors.username ? 'border-red-500' : 'border-gray-300'} rounded mb-1`}
           />
+          {errors.username && <p className="text-red-500 text-xs italic mb-2">{errors.username}</p>}
 
           <label className="block mb-2 text-sm font-medium text-gray-700">
             Password
@@ -76,8 +110,9 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className={`w-full p-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded mb-1`}
           />
+          {errors.password && <p className="text-red-500 text-xs italic mb-2">{errors.password}</p>}
 
           <div className="flex items-center justify-between mb-4">
             <p
@@ -91,7 +126,7 @@ export default function Login() {
           <button
             disabled={loading}
             className={`w-full bg-blue-600 text-white py-2 rounded ${
-              loading ? "opacity-50" : "hover:bg-blue-700"
+              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700 cursor-pointer"
             } transition`}
           >
             {loading ? "Logging in..." : "Login"}
@@ -108,6 +143,7 @@ export default function Login() {
           </p>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }
