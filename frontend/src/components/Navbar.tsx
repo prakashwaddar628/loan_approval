@@ -10,23 +10,15 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storedLoginStatus = localStorage.getItem("isLoggedIn");
-    if (storedLoginStatus === "true") {
-      setIsLoggedIn(true);
-    }
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token);
   }, []);
 
-  const handleClick = () => {
-    if (isLoggedIn) {
-      setIsLoggedIn(false);
-      localStorage.removeItem("isLoggedIn");
-      toast.success("Logged out successfully!");
-      router.push("/login");
-    } else {
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "true");
-      toast.success("Logged in successfully!");
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    setIsLoggedIn(false);
+    toast.success("Logged out successfully!");
+    router.push("/login");
   };
 
   return (
@@ -45,20 +37,14 @@ export default function Navbar() {
           <Link href="/predict" className="hover:underline hover:text-blue-200">
             Predict
           </Link>
-          <Link
-            href="/dashboard"
-            className="hover:underline hover:text-blue-200"
-          >
+          <Link href="/dashboard" className="hover:underline hover:text-blue-200">
             Dashboard
           </Link>
           <Link href="/about" className="hover:underline hover:text-blue-200">
             About
           </Link>
           {isLoggedIn ? (
-            <button
-              onClick={handleClick}
-              className="hover:underline hover:text-blue-200"
-            >
+            <button onClick={handleLogout} className="hover:underline hover:text-blue-200">
               Logout
             </button>
           ) : (
@@ -67,9 +53,7 @@ export default function Navbar() {
             </Link>
           )}
         </div>
-
       </div>
-
     </nav>
   );
 }

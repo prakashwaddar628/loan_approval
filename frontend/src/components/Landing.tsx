@@ -9,7 +9,7 @@ export default function Landing() {
     router.push("/predict");
   };
   return (
-    <div className="max-h-screen bg-gray-50">
+    <div className="min-h-[80vh] bg-pink-100 rounded-4xl shadow">
       <main className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-16 md:py-4">
         {/* Left Hero Content */}
         <div className="md:w-1/2 space-y-4 md:space-y-6 mb-8 md:mb-0">

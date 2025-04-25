@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Loan Predictor",
-  description: "loan predicting Ai model",
+  title: "Loan Approval System",
+  description: "AI-powered platform for loan predictions",
 };
 
 export default function RootLayout({

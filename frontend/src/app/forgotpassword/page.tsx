@@ -28,7 +28,6 @@ export default function ForgotPassword() {
       return;
     }
 
-    // Basic email format validation (you might want a more robust one)
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast.error('Please enter a valid email address.', {
         position: 'top-right',
@@ -44,7 +43,7 @@ export default function ForgotPassword() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/forgotpassword', { // Replace with your actual backend endpoint
+      const res = await fetch('http://localhost:5000/forgotpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +64,7 @@ export default function ForgotPassword() {
           draggable: true,
           progress: undefined,
         });
-        router.push('/login'); // Redirect to login page after successful request
+        router.push('/login'); 
       } else {
         toast.error(data.error || 'Failed to send password reset email. Please try again.', {
           position: 'top-right',
@@ -123,7 +122,7 @@ export default function ForgotPassword() {
                   loading ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
-                {loading ? 'Sending...' : 'Send Reset Link'}
+                {loading ? 'Sending...' : 'Send reset link'}
               </button>
             </div>
             <div className="text-center text-sm">

@@ -37,7 +37,7 @@ export default function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("authToken", data.token);
         console.log("Login successful");
         toast.success("Login successful!",{ 
           position: "top-right",

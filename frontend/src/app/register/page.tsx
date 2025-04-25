@@ -11,7 +11,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [isLoding, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -138,7 +138,7 @@ export default function Register() {
           />
 
           <label className="block mb-2 text-sm font-medium text-gray-700">
-            Password
+            Confirm Password
           </label>
           <input
             type="password"
@@ -152,16 +152,16 @@ export default function Register() {
           <div className="flex items-center justify-between mb-4 cursor-pointer">
             <label className="flex items-center text-sm">
               <input type="checkbox" required className="mr-2" />
-              agree terms& conditions
+              I agree to the terms & conditions
             </label>
           </div>
 
           <button
             type="submit"
-            disabled={isLoding}
+            disabled={isLoading}
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
-            {isLoding? "Registering..." : "Register"}
+            {isLoading? "Registering..." : "Register"}
           </button>
 
           <p className="mt-4 text-center text-sm">
