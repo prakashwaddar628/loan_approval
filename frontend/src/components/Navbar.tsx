@@ -22,9 +22,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-blue-600 text-white px-6 py-4 shadow-md sticky">
+    <nav className="bg-blue-600 text-white px-6 py-4 shadow-2xl sticky">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-3xl font-bold text-shadow-lg font-serif tracking-wide">
           <p className="text-orange-500">
             Lend<span className="text-white">Wise</span>
           </p>
