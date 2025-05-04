@@ -3,7 +3,8 @@
 import Navbar from '@/components/Navbar';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import Footer from '@/components/Footer';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -55,6 +56,7 @@ export default function ForgotPassword() {
       setLoading(false);
 
       if (res.ok) {
+        alert("Password reset link sent to your email address.")
         toast.success(data.message || 'Password reset link sent to your email address.', {
           position: 'top-right',
           autoClose: 5000,
@@ -94,8 +96,8 @@ export default function ForgotPassword() {
   return (
     <>
       <Navbar />
-      <div className="min-h-[92vh] flex justify-center items-center bg-gray-50">
-        <div className="bg-white p-6 rounded shadow-md w-full max-w-sm overflow-y-hidden">
+      <div className="min-h-[82vh] flex justify-center items-center bg-gray-50">
+        <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-blue-600 w-full max-w-sm overflow-y-hidden ">
           <h1 className="text-2xl font-bold mb-4 text-center">Forgot Password</h1>
           <p className="text-gray-600 mb-4 text-center">
             Enter your email address below and we'll send you a link to reset your password.
@@ -108,7 +110,8 @@ export default function ForgotPassword() {
               <input
                 type="email"
                 id="email"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full p-2 border-2 bg-blue-50 border-amber-50 outline-amber-50 rounded-full shadow-2xl focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder='enter email here'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -127,7 +130,7 @@ export default function ForgotPassword() {
             </div>
             <div className="text-center text-sm">
               <span
-                className="text-blue-600 cursor-pointer hover:underline"
+                className="text-blue-600 cursor-pointer hover:text-blue-300"
                 onClick={() => router.push('/login')}
               >
                 Back to Login
@@ -136,6 +139,8 @@ export default function ForgotPassword() {
           </form>
         </div>
       </div>
+      <ToastContainer />
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -94,10 +95,10 @@ export default function Register() {
   return (
     <>
       <Navbar />
-      <div className="min-h-[92vh] flex justify-center items-center bg-gray-50">
+      <div className="min-h-[82vh] flex justify-center items-center bg-gray-50">
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded shadow-md w-full max-w-sm overflow-y-hidden"
+          className="bg-white p-8 rounded-2xl shadow-2xl shadow-blue-600 w-full max-w-sm overflow-y-hidden"
         >
           <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
 
@@ -110,7 +111,7 @@ export default function Register() {
             required
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className="w-full p-2 rounded-full shadow-2xl mb-4 border-2 bg-blue-50 border-amber-50 outline-amber-50 outline-1"
           />
 
           <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -122,7 +123,7 @@ export default function Register() {
             required
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter username or email"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className="w-full p-2 rounded-full shadow-2xl mb-4 border-2 bg-blue-50 border-amber-50 outline-amber-50 outline-1"
           />
 
           <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -134,7 +135,7 @@ export default function Register() {
             required
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className="w-full p-2 rounded-full shadow-2xl mb-4 border-2 bg-blue-50 border-amber-50 outline-amber-50 outline-1"
           />
 
           <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -146,7 +147,7 @@ export default function Register() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="confirm password"
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className="w-full p-2 rounded-full shadow-2xl mb-4 border-2 bg-blue-50 border-amber-50 outline-amber-50 outline-1"
           />
 
           <div className="flex items-center justify-between mb-4 cursor-pointer">
@@ -159,7 +160,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-full shadow-md hover:bg-blue-700 transition"
           >
             {isLoading? "Registering..." : "Register"}
           </button>
@@ -167,7 +168,7 @@ export default function Register() {
           <p className="mt-4 text-center text-sm">
             already have an account?{" "}
             <span
-              className="text-blue-600 cursor-pointer hover:underline"
+              className="text-blue-600 cursor-pointer hover:text-blue-300"
               onClick={() => router.push("/login")}
             >
               Login
@@ -176,6 +177,7 @@ export default function Register() {
         </form>
       </div>
       <ToastContainer />
+      <Footer />
     </>
   );
 }

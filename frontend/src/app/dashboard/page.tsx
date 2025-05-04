@@ -162,33 +162,37 @@ export default function Dashboard() {
               <table className="min-w-full text-sm text-left border">
                 <thead className="bg-gray-100 font-semibold">
                   <tr>
-                    <th className="px-4 py-2 border">Name</th>
-                    <th className="px-4 py-2 border">Gender</th>
-                    <th className="px-4 py-2 border">Income</th>
-                    <th className="px-4 py-2 border">Status</th>
+                    <th className="px-2 py-2">Name</th>
+                    <th className="px-2 py-2">Gender</th>
+                    <th className="px-2 py-2">Income</th>
+                    <th className="px-2 py-2">Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {recent.map((item, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-4 py-2 border">{item.name}</td>
-                      <td className="px-4 py-2 border">{item.gender}</td>
-                      <td className="px-4 py-2 border">
-                        ₹{item.income.toLocaleString()}
-                      </td>
-                      <td
-                        className={`px-4 py-2 border font-semibold ${
-                          item.status === "Approved"
-                            ? "text-green-600"
-                            : "text-red-600"
-                        }`}
-                      >
-                        {item.status}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
               </table>
+              <div className="max-h-[220px] overflow-y-scroll">
+                <table className="min-w-full text-sm text-left border-t-0">
+                  <tbody>
+                    {recent.map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-2">{item.name}</td>
+                        <td className="px-6 py-2">{item.gender}</td>
+                        <td className="px-6 py-2">
+                          ₹{item.income.toLocaleString()}
+                        </td>
+                        <td
+                          className={`px-4 py-2 font-semibold ${
+                            item.status === "Approved"
+                              ? "text-green-600"
+                              : "text-red-600"
+                          }`}
+                        >
+                          {item.status}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
