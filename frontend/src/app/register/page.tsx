@@ -118,7 +118,7 @@ export default function Register() {
             Username
           </label>
           <input
-            type="text"
+            type="email"
             value={username}
             required
             onChange={(e) => setUsername(e.target.value)}

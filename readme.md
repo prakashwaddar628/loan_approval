@@ -29,3 +29,4 @@
     Features include income, credit history, loan amount, and more
 
     Uses data preprocessing, feature engineering, and model evaluation techniques
+    

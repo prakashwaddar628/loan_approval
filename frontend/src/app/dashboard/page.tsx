@@ -39,7 +39,7 @@ export default function Dashboard() {
     if (token) {
       fetch("http://127.0.0.1:5000/recent-predictions", {
         headers: {
-          Authorization: `Bearer ${token}`, // Example: Include token in headers
+          Authorization: `Bearer ${token}`,
         },
       })
         .then((res) => {
@@ -175,8 +175,8 @@ export default function Dashboard() {
                     {recent.map((item, index) => (
                       <tr key={index} className="hover:bg-gray-50">
                         <td className="px-6 py-2">{item.name}</td>
-                        <td className="px-6 py-2">{item.gender}</td>
-                        <td className="px-6 py-2">
+                        <td className="px-8 py-2">{item.gender}</td>
+                        <td className="px-4 py-2">
                           ₹{item.income.toLocaleString()}
                         </td>
                         <td

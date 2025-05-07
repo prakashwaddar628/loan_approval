@@ -8,7 +8,7 @@ import { useEffect, useRef } from 'react';
 const developersData = [
   {
     name: 'Melsita Mendonca',
-    role: 'Team Leader | Frontend Developer',
+    role: 'Team Leader | Backend Developer',
     moto: 'Unlocking potential through intelligent technology.',
     imageUrl: '/images/melsita.jpg',
   },
@@ -20,7 +20,7 @@ const developersData = [
   },
   {
     name: 'Raksha P',
-    role: 'Backend Lead',
+    role: 'Frontend Lead',
     moto: 'Building foundation for data driven innovation.',
     imageUrl: '/images/raksha.jpg',
   },
